@@ -1,0 +1,18 @@
+#include<stdio.h>
+int main()
+{
+    int a,b,c;
+    printf("Enter The no1: ");
+    scanf("%d",&a);
+    printf("Enter The no2: ");
+    scanf("%d",&b);
+    printf("Enter The no3: ");
+    scanf("%d",&c);
+    if(a>b && a>c)
+    printf("a is greater than others");
+    if(b>a && b>c)
+    printf("b is greater than others");
+    if(c>a && c>b)
+    printf("c is greater than others");
+    return 0;
+}
