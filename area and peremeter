@@ -1,0 +1,13 @@
+#include<stdio.h>
+int main()
+{
+    int wid,leng,area,peremeter;
+    printf("Enter The Length: ");
+    scanf("%d",&leng);
+    printf("Enter The Width: ");
+    scanf("%d",&wid);
+    area=leng*wid;
+    peremeter=2*(leng+wid);
+    printf("The area and the peremeter is: %d %d",area,peremeter);
+    return 0;
+}
