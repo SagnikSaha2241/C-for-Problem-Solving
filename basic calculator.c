@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 int main() {
     char op;
     double num1, num2, result;
