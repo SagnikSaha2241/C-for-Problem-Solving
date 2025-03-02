@@ -1,0 +1,14 @@
+#include<stdio.h>
+int main()
+{
+    int temp,a,b;
+    printf("Enter The  Number1: ");
+    scanf("%d",&a);
+    printf("Enter The Number2: ");
+    scanf("%d",&b);
+    temp=a;
+    a=b;
+    b=temp;
+    printf("%d %d",a,b);
+    return 0;
+}
