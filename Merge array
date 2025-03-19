@@ -1,51 +1,44 @@
-#include<stdio.h>
-int main()
-{
-	int arr1[1000],arr2[1000] ,arres[1000];
-	int n,m,i,s,j,k;
-	
-	printf("Enter The Number of values in array1: ");
-	scanf("%d" ,&n);
-	
-	printf("Enter The Number of values in array2: ");
-	scanf("%d" ,&m);
-	
-	printf("Enter The Values in 1st array: \n");
-	
-	for(i = 0 ; i < n ; i++)
-	{
-		scanf("%d" ,&arr1[i]);
-	}
-	
-	printf("Enter The Values in 2nd array: \n");
-	
-	for(i = 0 ; i < n ; i++)
-	{
-		scanf("%d" ,&arr2[i]);
-	}
-	
-	i, j , k = 0 , 0 , 0;
-	
-	for()
-	{
-		if(arr1[i] <= arr2[j])
-		{
-			arres[k] = arr1[i];
-			i++;
-		}
-		else
-		{
-			arres[k] = arr2[j];
-			j++;
-		}
-		
-		k++;
-	}
-	 
-	printf("%d",arres[4]);
-	
-	
-	
-	return 0;
-	
+#include <stdio.h>
+
+int main() {
+    int n1, n2, i, j;
+    
+    // Input the size of first array
+    printf("Enter the size of the first array: ");
+    scanf("%d", &n1);
+    int arr1[n1];
+    printf("Enter elements of the first array: ");
+    for (i = 0; i < n1; i++) {
+        scanf("%d", &arr1[i]);
+    }
+    
+    // Input the size of second array
+    printf("Enter the size of the second array: ");
+    scanf("%d", &n2);
+    int arr2[n2];
+    printf("Enter elements of the second array: ");
+    for (i = 0; i < n2; i++) {
+        scanf("%d", &arr2[i]);
+    }
+    
+    // Declare third array for merging
+    int mergedArray[n1 + n2];
+    
+    // Copy elements of first array
+    for (i = 0; i < n1; i++) {
+        mergedArray[i] = arr1[i];
+    }
+    
+    // Copy elements of second array
+    for (j = 0; j < n2; j++) {
+        mergedArray[i + j] = arr2[j];
+    }
+    
+    // Print the merged array
+    printf("Merged Array: ");
+    for (i = 0; i < n1 + n2; i++) {
+        printf("%d ", mergedArray[i]);
+    }
+    
+    return 0;
 }
