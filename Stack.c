@@ -1,118 +1,110 @@
-Here are some stack examples in C using arrays and structures:
-
-
----
-
-✅ 1. Stack using Array
-
 #include <stdio.h>
-#define SIZE 100
+#include <stdlib.h>
 
-int stack[SIZE];
-int top = -1;
+// Node structure
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to create a new node
+struct Node* newNode(int data) {
+    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+    if (!temp) {
+        printf("Memory allocation failed!\n");
+        exit(1);
+    }
+    temp->data = data;
+    temp->next = NULL;
+    return temp;
+}
 
 // Push function
-void push(int value) {
-    if (top == SIZE - 1) {
-        printf("Stack Overflow\n");
-    } else {
-        top++;
-        stack[top] = value;
-    }
+void push(struct Node** top, int data) {
+    struct Node* temp = newNode(data);
+    temp->next = *top;
+    *top = temp;
+    printf("%d pushed to stack.\n", data);
 }
 
 // Pop function
-int pop() {
-    if (top == -1) {
-        printf("Stack Underflow\n");
+int pop(struct Node** top) {
+    if (*top == NULL) {
+        printf("Stack is empty! Cannot pop.\n");
         return -1;
-    } else {
-        return stack[top--];
     }
+    struct Node* temp = *top;
+    int val = temp->data;
+    *top = (*top)->next;
+    free(temp);
+    return val;
+}
+
+// Peek function
+int peek(struct Node* top) {
+    if (top == NULL) {
+        printf("Stack is empty!\n");
+        return -1;
+    }
+    return top->data;
 }
 
 // Display function
-void display() {
-    if (top == -1) {
-        printf("Stack is empty\n");
-    } else {
-        printf("Stack elements: ");
-        for (int i = top; i >= 0; i--) {
-            printf("%d ", stack[i]);
-        }
-        printf("\n");
+void display(struct Node* top) {
+    if (top == NULL) {
+        printf("Stack is empty!\n");
+        return;
     }
-}
-
-int main() {
-    push(10);
-    push(20);
-    push(30);
-    display();
-
-    printf("Popped: %d\n", pop());
-    display();
-
-    return 0;
-}
-
-
----
-
-✅ 2. Stack using Structure
-
-#include <stdio.h>
-#define MAX 50
-
-typedef struct {
-    int data[MAX];
-    int top;
-} Stack;
-
-void init(Stack *s) {
-    s->top = -1;
-}
-
-void push(Stack *s, int value) {
-    if (s->top == MAX - 1)
-        printf("Stack Overflow\n");
-    else
-        s->data[++(s->top)] = value;
-}
-
-int pop(Stack *s) {
-    if (s->top == -1) {
-        printf("Stack Underflow\n");
-        return -1;
-    } else {
-        return s->data[(s->top)--];
+    struct Node* temp = top;
+    printf("Stack elements (top to bottom): ");
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
     }
-}
-
-void display(Stack s) {
-    printf("Stack: ");
-    for (int i = s.top; i >= 0; i--)
-        printf("%d ", s.data[i]);
     printf("\n");
 }
 
+// Main function with menu
 int main() {
-    Stack s;
-    init(&s);
+    struct Node* top = NULL;
+    int choice, value;
 
-    push(&s, 5);
-    push(&s, 15);
-    push(&s, 25);
-    display(s);
+    while (1) {
+        printf("\n--- Stack Menu ---\n");
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Peek\n");
+        printf("4. Display\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
 
-    printf("Popped: %d\n", pop(&s));
-    display(s);
+        switch (choice) {
+            case 1:
+                printf("Enter value to push: ");
+                scanf("%d", &value);
+                push(&top, value);
+                break;
+            case 2:
+                value = pop(&top);
+                if (value != -1)
+                    printf("Popped: %d\n", value);
+                break;
+            case 3:
+                value = peek(top);
+                if (value != -1)
+                    printf("Top element: %d\n", value);
+                break;
+            case 4:
+                display(top);
+                break;
+            case 5:
+                printf("Exiting program.\n");
+                exit(0);
+            default:
+                printf("Invalid choice! Try again.\n");
+        }
+    }
 
     return 0;
 }
-
-
----
-
-Would you like an example of stack using linked list too?
-
